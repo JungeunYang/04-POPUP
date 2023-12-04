@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>기본4 - addClass()</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul,
+      ol,
+      li {
+        list-style: none;
+      }
+      img {
+        vertical-align: top;
+      }
+      .wrap {
+        width: 60%;
+        margin: 50px auto;
+        background: #ff5;
+        font-size: 1rem;
+      }
+      .popup {
+        position: fixed;
+        top: -100%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(180deg);
+        width: 600px;
+        height: 400px;
+        border: 10px solid #000;
+        background: #fff;
+        padding: 60px;
+        opacity: 0;
+        transition: 1s cubic-bezier(0, 0.34, 0.11, 1.45);
+      }
+      .popup.active {
+        top: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      .dim {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+      }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+      $(function () {
+        // 대상을 변수에 저장
+        const $popup = $('.popup');
+        const $btnClose = $('.btn-close');
+        const $dim = $('.dim');
+
+        setTimeout(openPopup, 1000);
+        // 클릭하지 않아도 1초 후에 팝업이 열림
+
+        $('.wrap a').on('click', (e) => {
+          e.preventDefault();
+
+          openPopup();
+        });
+
+        // btnClose를 클릭하면 팝업창이 닫히게
+        $btnClose.on('click', closePopup);
+
+        // dim을 클릭하면 팝업창이 닫히게
+        $dim.on('click', closePopup);
+
+        // 중복되는 동작을 함수로 정의 - closePopup
+        function closePopup() {
+          $popup.removeClass('active');
+          $dim.fadeOut();
+        }
+        // openPopup
+        function openPopup() {
+          $dim.fadeIn();
+          $popup.addClass('active');
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- css에서 디자인 할 용도로만 쓰는 div:빈 공간만 이렇게 주면 됨  -->
+    <div class="dim"></div>
+    <div class="popup">
+      <p>팝업 내용이 뿌려집니다.</p>
+      <button class="btn-close" type="button">닫기</button>
+    </div>
+
+    <div class="wrap">
+      <p>
+        <a href="#">Lorem ipsum, dolor sit, </a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+        nostrum quos earum, ipsam alias aliquid? Perferendis corporis consequatur ipsum veritatis! Distinctio libero
+        quas sunt voluptatum delectus. Quaerat excepturi provident ipsum id accusantium perferendis officiis dolore et
+        magni atque, necessitatibus sunt numquam nesciunt ipsa voluptatum deserunt repellat fugit mollitia earum
+        expedita unde! Expedita excepturi tempora, praesentium tempore ullam porro facilis, perferendis reprehenderit
+        autem deleniti optio in veritatis dolorem enim quibusdam! Excepturi pariatur necessitatibus odit adipisci
+        laboriosam dolorem sed animi aut nostrum suscipit modi quae minus fugit, ullam non omnis vero beatae mollitia
+        ratione odio quo saepe fugiat amet? Quo sint labore ipsum est quasi alias sapiente dolorum cupiditate quam non.
+        Eum nulla cumque perspiciatis pariatur nisi provident fuga ullam commodi aperiam quaerat corrupti unde, nam
+        natus ratione quasi laborum vero repudiandae fugiat soluta. Consequatur ratione modi similique velit
+        dignissimos! Eum, vitae doloremque. Eligendi blanditiis molestiae sit doloribus, quidem cum saepe ea voluptate
+        eveniet? Repudiandae expedita incidunt, tempora alias facilis eius maiores repellat quibusdam minima asperiores
+        unde voluptatum ad in quisquam ut iste vitae, enim quis dolores delectus autem! Ipsam, laborum beatae! Incidunt
+        mollitia minus beatae commodi! Blanditiis beatae voluptatem placeat quidem, laborum impedit. Asperiores, earum
+        omnis, molestias doloremque, amet vero atque culpa deserunt alias voluptatem numquam modi vel esse distinctio
+        debitis natus cum qui in. Architecto dolor suscipit enim illo consectetur possimus repellendus blanditiis,
+        delectus aliquid, consequatur asperiores nisi pariatur est nulla vel! Voluptatum laudantium consequatur modi,
+        perferendis voluptatibus deserunt, eligendi recusandae minus vero similique accusamus corrupti quasi quo dolore
+        possimus. Mollitia nisi suscipit adipisci obcaecati, dolorum, accusamus blanditiis veritatis sit magni unde
+        similique delectus laboriosam asperiores esse. Quas accusantium tempora nulla sequi aliquam. Consectetur
+        repellat quaerat voluptas aperiam facere cumque explicabo tenetur quidem aut reiciendis culpa perspiciatis natus
+        voluptatem omnis est, odit quas, necessitatibus dolorum! Magni, porro vitae inventore earum minus ipsum soluta,
+        eos distinctio laborum reprehenderit amet impedit necessitatibus voluptatibus totam cupiditate molestiae! Non
+        tempora, culpa, natus molestias soluta rem dolores saepe voluptatum labore, velit ipsam. Reprehenderit,
+        corrupti! Nihil totam quis consectetur ab soluta necessitatibus cum culpa in possimus. Possimus veniam, totam
+        alias, cum sint delectus at esse fugit consequatur ut reiciendis, officiis necessitatibus aliquid! Vero ex
+        repudiandae eius, commodi reprehenderit enim at repellat minus. Modi, eius aliquam possimus debitis animi
+        repellendus neque officiis eligendi numquam consequuntur excepturi sint dolores pariatur accusamus earum saepe
+        totam at facere velit ipsam dolor eveniet. Nemo animi, sit corrupti ipsum quisquam accusamus ut id voluptas eum
+        ipsam in, doloremque, dolore expedita. Commodi esse dolorum, obcaecati molestias hic odit distinctio expedita
+        optio fugit numquam nisi! Ea porro temporibus debitis optio voluptate assumenda inventore reprehenderit, quia
+        officiis aut tempore ducimus obcaecati. Sint accusamus fuga, beatae delectus optio quos quasi iusto sed eaque
+        perferendis cupiditate esse expedita sequi voluptatesaque molestiae.
+      </p>
+    </div>
+  </body>
+</html>
