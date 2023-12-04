@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>팝업창 기본1</title>
+    <title>팝업창 기본2 - dim</title>
     <style>
       * {
         margin: 0;
@@ -36,6 +36,15 @@
         padding: 60px;
         display: none;
       }
+      .dim {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+      }
     </style>
     <script src="../js/jquery-3.7.1.min.js"></script>
     <script>
@@ -43,21 +52,26 @@
         // 대상을 변수에 저장
         const $popup = $('.popup');
         const $btnClose = $('.btn-close');
+        const $dim = $('.dim');
 
         $('.wrap a').on('click', (e) => {
           e.preventDefault();
 
-          $popup.fadeIn();
+          $dim.fadeIn();
+          $popup.slideDown();
         });
 
         // btnClose를 클릭하면 팝업창이 닫히게
         $btnClose.on('click', () => {
-          $popup.fadeOut();
+          $popup.slideUp();
+          $dim.fadeOut();
         });
       });
     </script>
   </head>
   <body>
+    <!-- css에서 디자인 할 용도로만 쓰는 div:빈 공간만 이렇게 주면 됨  -->
+    <div class="dim"></div>
     <div class="popup">
       <p>팝업 내용이 뿌려집니다.</p>
       <button class="btn-close" type="button">닫기</button>
