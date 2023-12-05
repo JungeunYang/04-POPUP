@@ -16,29 +16,49 @@ $(function () {
     // $dim 활성화
     $dim.fadeToggle();
 
-    // $menu가 보여지게 : isActive 조건에 따라서
+    //   // $menu가 보여지게 : isActive 조건에 따라서
+    //   if (isActive === false) {
+    //     // $menu를 보이게
+    //     $menu.animate(
+    //       {
+    //         left: 0,
+    //       },
+    //       350
+    //     );
+
+    //     isActive = true;
+    //     /* 여기서 true로 다시 돌려줘야 다시 false로 감 */
+    //   } else {
+    //     // $menu를 안보이게
+    //     $menu.animate(
+    //       {
+    //         left: '-100%',
+    //       },
+    //       350
+    //     );
+
+    //     isActive = false;
+    //     /* 여기서는 다시 false로 */
+    //   }
+    // });
     if (isActive === false) {
-      // $menu를 보이게
-      $menu.animate(
-        {
-          left: 0,
-        },
-        350
-      );
-
+      slideMenu(0);
       isActive = true;
-      /* 여기서 true로 다시 돌려줘야 다시 false로 감 */
     } else {
-      // $menu를 안보이게
+      slideMenu('-100%');
+      isActive = false;
+    }
+
+    //공통의 동작을 함수로 정의
+    function slideMenu(pos) {
+      /* pos:매개변수 / 매개변수 이름은 내 마음대로 /
+    (pos, dur) 포지션 지속시간 이런식으로 여러개 매개변수로 잡아줄 수 있음 */
       $menu.animate(
         {
-          left: '-100%',
+          left: pos,
         },
         350
       );
-
-      isActive = false;
-      /* 여기서는 다시 false로 */
     }
   });
 });
