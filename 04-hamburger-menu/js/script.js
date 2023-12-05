@@ -55,6 +55,8 @@ $(function () {
   const $menuList = $('.menu >li');
   const $submenu = $('.submenu');
 
+  $menuList.on('dblclick', initSubmenu);
+
   $menuList.on('click', function (e) {
     e.preventDefault();
 
