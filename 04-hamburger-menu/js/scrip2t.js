@@ -43,8 +43,15 @@ $(function () {
     //   }
     // });
 
-    isActive === false ? openMenu() : closeMenu();
-    // = !isActive ? openMenu() : closeMenu();
+    if (isActive === false) {
+      openMenu();
+      // slideMenu(0);
+      // isActive = true;
+    } else {
+      // slideMenu('-100%');
+      // isActive = false;
+      closeMenu();
+    }
   });
 
   // $dim을 클릭했을 때
